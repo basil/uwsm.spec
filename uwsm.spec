@@ -27,22 +27,23 @@ Recommends:     /usr/bin/whiptail
 Recommends:     wofi
 
 %description
-Provides a set of Systemd units and helpers to set up the environment
-and manage standalone Wayland compositor sessions.
+Wayland session manager for standalone compositors
+uwsm (Universal Wayland Session Manager) provides a lightweight, modular
+session management framework for Wayland environments based on systemd user
+units and various helpers.
 
-Aside from environment setup/cleanup, it makes Systemd do most of the
-work and does not require any extra daemons running in background
-(except for a tiny waitpid process and a simple shell signal handler in
-the lightest case).
+It handles various session-related tasks for standalone Wayland compositors,
+such as:
 
-This setup provides robust session management, overridable compositor-
-and session-aware environment management, XDG autostart, bi-directional
-binding with login session, clean shutdown, solutions for a set of small
-but annoying gotchas of systemd session management.
+- startup from login shell or DM
+- dynamic loading and cleanup of environment variables for graphical session
+- binding lifetime of graphical session and login session together
 
-For compositors this is an opportunity to offload: Systemd integration,
-session/XDG autostart management, Systemd/DBus activation environment
-interaction with its caveats.
+It sets the stage for systemd to do launch and lifecycle management,
+XDG autostart, clean shutdown.
+
+dbus-broker is recommended for better systemd integration and environment
+cleanup.
 
 %prep
 %autosetup -p1
