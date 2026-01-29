@@ -1,6 +1,6 @@
 Name:           uwsm
 Summary:        Universal Wayland Session Manager
-Version:        0.26.0
+Version:        0.26.1
 Release:        1%{?dist}
 
 License:        MIT
@@ -95,5 +95,5 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_userunitdir}/wayland-*.target
 
 %changelog
-* Fri Jan 2 2026 Basil Crow <me@basilcrow.com> - 0.26.0-1
+* Thurs Jan 29 2026 Basil Crow <me@basilcrow.com> - 0.26.1-1
 - Initial packaging
