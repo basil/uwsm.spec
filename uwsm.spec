@@ -13,11 +13,10 @@ BuildRequires:  meson
 BuildRequires:  python3
 BuildRequires:  python3-dbus
 BuildRequires:  python3-pyxdg
-BuildRequires:  python-rpm-macros
+BuildRequires:  python3-rpm-macros
 BuildRequires:  scdoc
 BuildRequires:  systemd-rpm-macros
 
-Requires:       python3
 Requires:       python3-dbus
 Requires:       python3-pyxdg
 Requires:       util-linux
