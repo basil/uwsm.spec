@@ -44,6 +44,51 @@ XDG autostart, clean shutdown.
 dbus-broker is recommended for better systemd integration and environment
 cleanup.
 
+%package        plugin-hyprland
+Summary:        uwsm plugin for Hyprland
+Requires:       %{name} = %{version}-%{release}
+Supplements:    (%{name} and hyprland)
+BuildArch:      noarch
+
+%description    plugin-hyprland
+uwsm plugin for the Hyprland compositor.
+
+%package        plugin-labwc
+Summary:        uwsm plugin for labwc
+Requires:       %{name} = %{version}-%{release}
+Supplements:    (%{name} and labwc)
+BuildArch:      noarch
+
+%description    plugin-labwc
+uwsm plugin for the labwc compositor.
+
+%package        plugin-niri
+Summary:        uwsm plugin for niri
+Requires:       %{name} = %{version}-%{release}
+Supplements:    (%{name} and niri)
+BuildArch:      noarch
+
+%description    plugin-niri
+uwsm plugin for the niri compositor.
+
+%package        plugin-sway
+Summary:        uwsm plugin for Sway
+Requires:       %{name} = %{version}-%{release}
+Supplements:    (%{name} and sway)
+BuildArch:      noarch
+
+%description    plugin-sway
+uwsm plugin for the Sway compositor.
+
+%package        plugin-wayfire
+Summary:        uwsm plugin for Wayfire
+Requires:       %{name} = %{version}-%{release}
+Supplements:    (%{name} and wayfire)
+BuildArch:      noarch
+
+%description    plugin-wayfire
+uwsm plugin for the Wayfire compositor.
+
 %prep
 %autosetup -p1
 
@@ -69,7 +114,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_bindir}/uuctl
 %{_bindir}/wait-tray
 %{_datadir}/applications/uuctl.desktop
-%{_datadir}/%{name}/
+%{_datadir}/%{name}/modules/
 %{_libexecdir}/%{name}/prepare-env.sh
 %{_libexecdir}/%{name}/signal-handler.sh
 %{_mandir}/man1/uuctl.1.*
@@ -79,6 +124,23 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_userunitdir}/*-graphical.slice
 %{_userunitdir}/wayland-*.service
 %{_userunitdir}/wayland-*.target
+
+%files plugin-hyprland
+%{_datadir}/%{name}/plugins/hyprland.sh
+%{_datadir}/%{name}/plugins/start_hyprland.sh
+
+%files plugin-labwc
+%{_datadir}/%{name}/plugins/labwc.sh
+
+%files plugin-niri
+%{_datadir}/%{name}/plugins/niri.sh
+%{_datadir}/%{name}/plugins/niri_session.sh
+
+%files plugin-sway
+%{_datadir}/%{name}/plugins/sway.sh
+
+%files plugin-wayfire
+%{_datadir}/%{name}/plugins/wayfire.sh
 
 %changelog
 * Thu Jan 29 2026 Basil Crow <me@basilcrow.com> - 0.26.1-1
