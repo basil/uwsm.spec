@@ -49,31 +49,19 @@ cleanup.
 %autosetup -p1
 
 %build
-%meson -Duuctl=enabled -Dfumon=enabled -Dfumon-preset=disabled -Dwait-tray=enabled -Duwsm-app=enabled
+%meson -Duuctl=enabled -Dfumon=disabled -Dwait-tray=enabled -Duwsm-app=enabled
 %meson_build
 
 %install
 %meson_install
-# Systemd presets are not permitted except in fedora-release
-rm -f %{buildroot}%{_userpresetdir}/80-fumon.preset
 %py_byte_compile %{python3} %{buildroot}%{_datadir}/%{name}/modules
 
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
-%post
-%systemd_user_post fumon.service
-
-%preun
-%systemd_user_preun fumon.service
-
-%postun
-%systemd_user_postun fumon.service
-
 %files
 %doc %{_docdir}/%{name}/
 %license LICENSE
-%{_bindir}/fumon
 %{_bindir}/%{name}
 %{_bindir}/%{name}-app
 %{_bindir}/%{name}-terminal
@@ -85,13 +73,11 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_datadir}/%{name}/
 %{_libexecdir}/%{name}/prepare-env.sh
 %{_libexecdir}/%{name}/signal-handler.sh
-%{_mandir}/man1/fumon.1.*
 %{_mandir}/man1/uuctl.1.*
 %{_mandir}/man1/%{name}.1.*
 %{_mandir}/man1/%{name}-app.1.*
 %{_mandir}/man3/%{name}-plugins.3.*
 %{_userunitdir}/*-graphical.slice
-%{_userunitdir}/fumon.service
 %{_userunitdir}/wayland-*.service
 %{_userunitdir}/wayland-*.target
 
