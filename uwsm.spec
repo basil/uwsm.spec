@@ -54,6 +54,8 @@ cleanup.
 
 %install
 %meson_install
+# Systemd presets are not permitted except in fedora-release
+rm -f %{buildroot}%{_userpresetdir}/80-fumon.preset
 %py_byte_compile %{python3} %{buildroot}%{_datadir}/%{name}/modules
 
 %check
@@ -88,12 +90,11 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_mandir}/man1/%{name}.1.*
 %{_mandir}/man1/%{name}-app.1.*
 %{_mandir}/man3/%{name}-plugins.3.*
-%{_userpresetdir}/80-fumon.preset
 %{_userunitdir}/*-graphical.slice
 %{_userunitdir}/fumon.service
 %{_userunitdir}/wayland-*.service
 %{_userunitdir}/wayland-*.target
 
 %changelog
-* Thurs Jan 29 2026 Basil Crow <me@basilcrow.com> - 0.26.1-1
+* Thu Jan 29 2026 Basil Crow <me@basilcrow.com> - 0.26.1-1
 - Initial packaging
