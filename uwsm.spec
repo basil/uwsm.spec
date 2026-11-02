@@ -1,6 +1,6 @@
 Name:           uwsm
 Summary:        Universal Wayland Session Manager
-Version:        0.26.1
+Version:        0.27.1
 Release:        1%{?dist}
 
 License:        MIT
@@ -61,6 +61,15 @@ BuildArch:      noarch
 
 %description    plugin-labwc
 uwsm plugin for the labwc compositor.
+
+%package        plugin-mango
+Summary:        uwsm plugin for Mango
+Requires:       %{name} = %{version}-%{release}
+Supplements:    (%{name} and mango)
+BuildArch:      noarch
+
+%description    plugin-mango
+uwsm plugin for the Mango compositor.
 
 %package        plugin-niri
 Summary:        uwsm plugin for niri
@@ -132,6 +141,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %files plugin-labwc
 %{_datadir}/%{name}/plugins/labwc.sh
 
+%files plugin-mango
+%{_datadir}/%{name}/plugins/mango.sh
+
 %files plugin-niri
 %{_datadir}/%{name}/plugins/niri.sh
 %{_datadir}/%{name}/plugins/niri_session.sh
@@ -143,5 +155,5 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_datadir}/%{name}/plugins/wayfire.sh
 
 %changelog
-* Thu Jan 29 2026 Basil Crow <me@basilcrow.com> - 0.26.1-1
+* Mon Nov 02 2026 Basil Crow <me@basilcrow.com> - 0.27.1-1
 - Initial packaging
